@@ -1,0 +1,44 @@
+parent(pam,bob).
+parent(tom,liz).
+parent(tom,bob).
+parent(bob,ann).
+parent(bob,pat).
+parent(pat,jim).
+male(tom).
+male(bob).
+male(jim).
+female(pam).
+female(liz).
+female(pat).
+female(ann).
+father(X,Y):-
+parent(X,Y),
+male(X).
+grandfather(X,Z):-
+parent(X,Y),
+parent(Y,Z).
+sister(X,Y):-
+parent(Z,X),
+parent(Z,Y),
+female(X),
+X\=Y.
+brother(X,Y):-
+parent(Z,X),
+parent(Z,Y),
+male(X),
+X\=Y.
+uncale(X,Y):-
+parent(Z,Y),
+brother(X,Z).
+predecessor(X,Y):-
+parent(X,Y).
+predecessor(X,Y):-
+parent(Z,Y),
+predecessor(X,Z).
+odd(1).
+odd(X):-
+X>0,X1 is X-2,odd(X1).
+odd(X):-
+X<0,X1 is X+2,odd(X1).
+even(X):-
+X1 is X-1,odd(X1).
